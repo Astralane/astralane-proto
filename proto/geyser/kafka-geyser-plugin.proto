@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+
 import "geyser/geyser.proto";
 import "solana/transaction.proto";
 
@@ -18,7 +19,7 @@ message SetThrottlingFactorResponse {
   bool success = 1;
 }
 
-service Geyser {
+service KafkaService {
   rpc GetHeartbeatInterval(EmptyRequest) returns (GetHeartbeatIntervalResponse) {}
   rpc GetThrottlingFactor(EmptyRequest) returns (GetThrottlingFactorResponse) {}
   rpc SetThrottlingFactor(SetThrottlingFactorRequest) returns (SetThrottlingFactorResponse) {}
