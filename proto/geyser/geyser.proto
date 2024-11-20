@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto"
+
+import "solana/transaction.proto";
+
+package geyser;
+message EmptyRequest {}
+
+message GetHeartbeatIntervalResponse {
+  uint64 heartbeat_interval_ms = 1;
+}
+
+message TransactionUpdate {
+  uint64 slot = 1;
+  string signature = 2;
+  bool is_vote = 3;
+  uint64 tx_idx = 4;
+  solana.ConfirmedTransaction tx = 5;
+}
+
+message TimestampedTransactionUpdate {
+  google.protobuf.Timestamp ts = 1;
+  TransactionUpdate transaction = 2;
+}

@@ -1,22 +1,10 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
-import "transaction.proto";
+import "geyser/geyser.proto";
+import "solana/transaction.proto";
 
-package solana.geyser;
-
-message TransactionUpdate {
-  uint64 slot = 1;
-  string signature = 2;
-  bool is_vote = 3;
-  uint64 tx_idx = 4;
-  storage.ConfirmedBlock.ConfirmedTransaction tx = 5;
-}
-
-message TimestampedTransactionUpdate {
-  google.protobuf.Timestamp ts = 1;
-  TransactionUpdate transaction = 2;
-}
+package geyser.kafka;
 
 message GetThrottlingFactorResponse {
   uint32 throttling_factor = 1;
@@ -30,9 +18,8 @@ message SetThrottlingFactorResponse {
   bool success = 1;
 }
 
-message EmptyRequest {}
-
 service Geyser {
+  rpc GetHeartbeatInterval(EmptyRequest) returns (GetHeartbeatIntervalResponse) {}
   rpc GetThrottlingFactor(EmptyRequest) returns (GetThrottlingFactorResponse) {}
   rpc SetThrottlingFactor(SetThrottlingFactorRequest) returns (SetThrottlingFactorResponse) {}
 }
