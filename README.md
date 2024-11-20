@@ -1,5 +1,6 @@
-# protos
-This repository contains public protobuf definitions for Jito Lab's MEV system.
+# Astralane protos
+
+Astralane protobuf files for communication between servers.
 
 ## Usage
 Add this repo as a git submodule to your repo. Here's an example file tree in a Rust codebase:
